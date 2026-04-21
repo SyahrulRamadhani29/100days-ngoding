@@ -1,0 +1,48 @@
+package Tugas1;
+
+import java.util.*;
+
+public class AdjList {
+    private ArrayList<ArrayList<Integer>> adjList;
+    private int V;
+
+    public AdjList(int V) {
+        this.V = V;
+        adjList = new ArrayList<>();
+
+        for (int i = 0; i <= V; i++) { // pakai 1-6
+            adjList.add(new ArrayList<>());
+        }
+    }
+
+    // tambah edge
+    public void addEdge(int u, int v) {
+        adjList.get(u).add(v);
+        adjList.get(v).add(u); // karena tidak berarah
+    }
+
+    // tampilkan graph
+    public void printGraph() {
+        for (int i = 1; i <= V; i++) {
+            System.out.print(i + " -> ");
+            for (int node : adjList.get(i)) {
+                System.out.print(node + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        AdjList g = new AdjList(6);
+
+        // sesuai graph kamu
+        g.addEdge(1, 2);
+        g.addEdge(1, 3);
+        g.addEdge(1, 4);
+        g.addEdge(2, 3);
+        g.addEdge(2, 6);
+        g.addEdge(5, 6);
+
+        g.printGraph();
+    }
+}
